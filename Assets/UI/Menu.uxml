@@ -1,8 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/Foldout%20style.uss?fileID=7433441132597879392&amp;guid=ebc67a32969ad4cc0aad0747a65ca5fc&amp;type=3#Foldout style"/>
-    <ui:VisualElement style="flex-grow: 1;">
-        <ui:Foldout text="Settings" enabled="true" style="color: rgb(255, 255, 255); -unity-background-image-tint-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.95); right: 0; align-items: flex-start; justify-content: space-between; align-self: flex-end; height: 63px; width: 129px; visibility: visible; display: flex; overflow: visible; top: 50px; flex-direction: column; flex-wrap: nowrap;">
-            <ui:Foldout text="Audio" name="AudioFoldout" style="left: auto; right: 30px; height: 31px; width: 129px; background-color: rgb(38, 35, 35); -unity-background-image-tint-color: rgb(255, 255, 255);"/>
+    <Style src="project://database/Assets/UI/Foldout%20style.uss?fileID=7433441132597879392&amp;guid=ebc67a32969ad4cc0aad0747a65ca5fc&amp;type=3#Foldout style"/>
+    <ui:VisualElement style="flex-grow: 1; flex-basis: auto; align-items: auto; justify-content: flex-start; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); align-self: flex-end; flex-direction: column; width: 18%;">
+        <ui:Foldout text="Settings" name="Settings" style="align-items: flex-start; justify-content: flex-start; align-self: stretch; align-content: flex-start; -unity-text-outline-color: rgb(0, 0, 0); background-position-x: center; -unity-background-scale-mode: stretch-to-fill; -unity-background-image-tint-color: rgb(0, 0, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 1px; border-left-width: 0; border-top-color: rgb(103, 103, 103); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-bottom-color: rgb(103, 103, 103);">
+            <ui:Foldout text="Simulation " name="Simulation" style="flex-direction: column; position: absolute; left: -30px; width: 343px; border-bottom-color: rgb(103, 103, 103); border-bottom-width: 1px;">
+                <ui:DropdownField label="Ships " name="Ships" style="justify-content: flex-start; align-items: flex-start; flex-direction: row; width: 275px; position: absolute; left: -30px; align-self: auto; align-content: flex-start; top: 0;"/>
+            </ui:Foldout>
         </ui:Foldout>
     </ui:VisualElement>
 </ui:UXML>
