@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Foldout%20style.uss?fileID=7433441132597879392&amp;guid=ebc67a32969ad4cc0aad0747a65ca5fc&amp;type=3#Foldout style"/>
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Foldout text="Settings" enabled="true" style="color: rgb(255, 255, 255); -unity-background-image-tint-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.95); right: 0; align-items: flex-start; justify-content: space-between; align-self: flex-end; height: 63px; width: 129px; visibility: visible; display: flex; overflow: visible; top: 50px; flex-direction: column; flex-wrap: nowrap;">
+            <ui:Foldout text="Audio" name="AudioFoldout" style="left: auto; right: 30px; height: 31px; width: 129px; background-color: rgb(38, 35, 35); -unity-background-image-tint-color: rgb(255, 255, 255);"/>
+        </ui:Foldout>
+    </ui:VisualElement>
+</ui:UXML>
