@@ -1,12 +1,8 @@
 using UnityEngine;
-using AK.Wwise;
 
 public class SpaceshipController : MonoBehaviour
 {
-    [Header("Wwise References")]
-    public AK.Wwise.RTPC rpmRTPC;    
-    public AK.Wwise.RTPC loadRTPC;   
-    public AK.Wwise.Event engineEvent;
+    
 
     [Header("Engine Physics")]
     [Range(0, 100)] public float idleRPM = 10f;
@@ -35,7 +31,6 @@ public class SpaceshipController : MonoBehaviour
     void Start()
     {
         currentRPM = idleRPM;
-        if (engineEvent.IsValid()) engineEvent.Post(gameObject);
         if (shipModel != null) initialRotation = shipModel.localRotation;
     }
 
@@ -62,8 +57,7 @@ public class SpaceshipController : MonoBehaviour
 
         // 4. TILT & WWISE
         HandleTilt();
-        rpmRTPC.SetGlobalValue(currentRPM);
-        loadRTPC.SetGlobalValue(currentLoad);
+     
 
         // 5. DEBUG LOGGING
         if (showDebug) LogEngineValues();
