@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{da90ef6d-ad00-45dc-8007-b27e5cd78b61}">
+		<property name="assetPath">
+			<value>New Recording 1493.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>81.864000000000004</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1a0b08f3-2c55-4644-b97f-448a2240d2b0}</destination>
+		</relationship>
+	</object>
+</objects>
