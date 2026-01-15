@@ -1,17 +1,20 @@
 using UnityEngine;
+using FMODUnity; // Required for EventReference
+using FMOD.Studio; 
 
 public class SpaceshipController : MonoBehaviour
 {
+    [Header("FMOD Settings")]
+    // This creates the [Browse] button in the Inspector
+    public EventReference engineEvent; 
     
+    [ParamRef] public string rpmParameterName = "Engine_RPM";
+    [ParamRef] public string loadParameterName = "Engine_Load";
 
     [Header("Engine Physics")]
     [Range(0, 100)] public float idleRPM = 10f;
     [Range(0, 100)] public float maxRPM = 100f;
-    
-    [Tooltip("Time in seconds to reach Max RPM from Idle")]
     public float timeToReachMax = 2.0f; 
-    
-    [Tooltip("Time in seconds to drop back to Idle from Max")]
     public float timeToDropToIdle = 3.5f; 
 
     [Header("Visual Polish (Tilt)")]
@@ -19,9 +22,10 @@ public class SpaceshipController : MonoBehaviour
     public float maxTiltAngle = 8f;  
     public float tiltSpeed = 4f;     
 
-    [Header("Debug Settings")]
+    [Header("Debug")]
     public bool showDebug = true;
 
+    private EventInstance engineInstance;
     private float currentRPM;
     private float targetRPM;
     private float rpmVelocity; 
@@ -31,16 +35,29 @@ public class SpaceshipController : MonoBehaviour
     void Start()
     {
         currentRPM = idleRPM;
+
+        // 1. START FMOD INSTANCE
+        // We check if the event is assigned before trying to play it
+        if (!engineEvent.IsNull)
+        {
+            engineInstance = RuntimeManager.CreateInstance(engineEvent);
+            engineInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
+            engineInstance.start();
+        }
+        else
+        {
+            Debug.LogWarning("FMOD Engine Event not assigned in the Inspector!");
+        }
+
         if (shipModel != null) initialRotation = shipModel.localRotation;
     }
 
     void Update()
     {
-        // 1. INPUT HANDLING
+        // 2. INPUT & PHYSICS LOGIC
         float throttleInput = Input.GetAxis("Vertical"); 
         targetRPM = Mathf.Lerp(idleRPM, maxRPM, Mathf.Clamp01(throttleInput));
 
-        // 2. RPM SIMULATION
         float activeSmoothTime = (targetRPM > currentRPM) ? timeToReachMax : timeToDropToIdle;
         float previousRPM = currentRPM;
         currentRPM = Mathf.SmoothDamp(currentRPM, targetRPM, ref rpmVelocity, activeSmoothTime);
@@ -48,18 +65,17 @@ public class SpaceshipController : MonoBehaviour
         // 3. LOAD CALCULATION
         float rawDelta = (currentRPM - previousRPM) / Time.deltaTime;
         float maxExpectedAcceleration = (maxRPM - idleRPM) / timeToReachMax;
-        
-        // Prevent division by zero if timeToReachMax is set to 0
-        if (maxExpectedAcceleration > 0)
-            currentLoad = Mathf.Clamp01(rawDelta / maxExpectedAcceleration); 
-        else
-            currentLoad = 0;
+        currentLoad = (maxExpectedAcceleration > 0) ? Mathf.Clamp01(rawDelta / maxExpectedAcceleration) : 0;
 
-        // 4. TILT & WWISE
+        // 4. UPDATE FMOD PARAMETERS
+        if (engineInstance.isValid())
+        {
+            engineInstance.setParameterByName(rpmParameterName, currentRPM);
+            engineInstance.setParameterByName(loadParameterName, currentLoad);
+            engineInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
+        }
+
         HandleTilt();
-     
-
-        // 5. DEBUG LOGGING
         if (showDebug) LogEngineValues();
     }
 
@@ -71,16 +87,21 @@ public class SpaceshipController : MonoBehaviour
         shipModel.localRotation = Quaternion.Slerp(shipModel.localRotation, targetRotation, Time.deltaTime * tiltSpeed);
     }
 
-    void LogEngineValues()
+    void OnDestroy()
     {
-        // Color coding: Cyan for RPM, Yellow for Load
-        Debug.Log($"<color=cyan><b>[RPM]:</b> {currentRPM:F2}</color> | " +
-                  $"<color=yellow><b>[Load]:</b> {currentLoad:P0}</color> | " +
-                  $"<b>Target:</b> {targetRPM:F0} | " +
-                  $"<b>Accel Time:</b> {timeToReachMax}s");
+        if (engineInstance.isValid())
+        {
+            engineInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            engineInstance.release();
+        }
     }
 
-    // Getters for the UI script
+    void LogEngineValues()
+    {
+        Debug.Log($"<color=#00FFCC><b>[FMOD RPM]:</b> {currentRPM:F2}</color> | " +
+                  $"<color=#FFCC00><b>[FMOD Load]:</b> {currentLoad:P0}</color>");
+    }
+
     public float GetRPM() => currentRPM;
     public float GetLoad() => currentLoad;
 }

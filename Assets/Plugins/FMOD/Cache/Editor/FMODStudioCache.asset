@@ -42,10 +42,34 @@ MonoBehaviour:
   Path: TechDemoFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639039158671388980
+  lastModified: 639040064989469287
   FileSizes:
   - Name: Desktop
-    Value: 641344
+    Value: 772320
+  Exists: 1
+--- !u!114 &-3069437401280107412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/BomberEngine/Engine_RPM
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Engine_RPM
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 1570535393
+    data2: 3280985169
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -64,13 +88,67 @@ MonoBehaviour:
   - {fileID: -5310664994028422166}
   EditorEvents:
   - {fileID: -5490147958417642341}
+  - {fileID: 3462991347992966519}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5310664994028422166}
   StringsBanks:
   - {fileID: 8478130545259368731}
-  cacheTime: 639039158671397599
+  cacheTime: 639040064989479755
   cacheVersion: 131634
+--- !u!114 &1927163482881817240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/BomberEngine/Engine_Load
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Engine_Load
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 2824891465
+    data2: 3052737592
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &3462991347992966519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Bomber/BomberEngine
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Bomber/BomberEngine
+  Guid:
+    Data1: -1387686374
+    Data2: 1281827297
+    Data3: -1687616622
+    Data4: -267929577
+  Banks:
+  - {fileID: -5310664994028422166}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -3069437401280107412}
+  - {fileID: 1927163482881817240}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8478130545259368731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,8 +164,8 @@ MonoBehaviour:
   Path: TechDemoFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639039158671397599
+  lastModified: 639040064989479755
   FileSizes:
   - Name: Desktop
-    Value: 754
+    Value: 914
   Exists: 1
