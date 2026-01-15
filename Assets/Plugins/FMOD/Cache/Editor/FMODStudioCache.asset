@@ -42,10 +42,10 @@ MonoBehaviour:
   Path: TechDemoFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639040064989469287
+  lastModified: 639040751859367912
   FileSizes:
   - Name: Desktop
-    Value: 772320
+    Value: 2262656
   Exists: 1
 --- !u!114 &-3069437401280107412
 MonoBehaviour:
@@ -71,6 +71,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-3045069344919784669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Bomber/CockpitEmitter
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Bomber/CockpitEmitter
+  Guid:
+    Data1: 1109956411
+    Data2: 1283012516
+    Data3: -1412960878
+    Data4: -991804076
+  Banks:
+  - {fileID: -5310664994028422166}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 50
+  Length: 34800
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,12 +116,13 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: -5490147958417642341}
   - {fileID: 3462991347992966519}
+  - {fileID: -3045069344919784669}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5310664994028422166}
   StringsBanks:
   - {fileID: 8478130545259368731}
-  cacheTime: 639040064989479755
+  cacheTime: 639040751859392841
   cacheVersion: 131634
 --- !u!114 &1927163482881817240
 MonoBehaviour:
@@ -164,8 +192,8 @@ MonoBehaviour:
   Path: TechDemoFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639040064989479755
+  lastModified: 639040751859392841
   FileSizes:
   - Name: Desktop
-    Value: 914
+    Value: 972
   Exists: 1
