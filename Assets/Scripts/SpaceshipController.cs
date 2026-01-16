@@ -1,11 +1,10 @@
 using UnityEngine;
-using FMODUnity; // Required for EventReference
+using FMODUnity; 
 using FMOD.Studio; 
 
 public class SpaceshipController : MonoBehaviour
 {
     [Header("FMOD Settings")]
-    // This creates the [Browse] button in the Inspector
     public EventReference engineEvent; 
     
     [ParamRef] public string rpmParameterName = "Engine_RPM";
@@ -36,8 +35,6 @@ public class SpaceshipController : MonoBehaviour
     {
         currentRPM = idleRPM;
 
-        // 1. START FMOD INSTANCE
-        // We check if the event is assigned before trying to play it
         if (!engineEvent.IsNull)
         {
             engineInstance = RuntimeManager.CreateInstance(engineEvent);
@@ -46,7 +43,7 @@ public class SpaceshipController : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("FMOD Engine Event not assigned in the Inspector!");
+            Debug.LogWarning("FMOD Engine Event not assigned!");
         }
 
         if (shipModel != null) initialRotation = shipModel.localRotation;
@@ -54,7 +51,7 @@ public class SpaceshipController : MonoBehaviour
 
     void Update()
     {
-        // 2. INPUT & PHYSICS LOGIC
+        //Input
         float throttleInput = Input.GetAxis("Vertical"); 
         targetRPM = Mathf.Lerp(idleRPM, maxRPM, Mathf.Clamp01(throttleInput));
 
@@ -62,12 +59,12 @@ public class SpaceshipController : MonoBehaviour
         float previousRPM = currentRPM;
         currentRPM = Mathf.SmoothDamp(currentRPM, targetRPM, ref rpmVelocity, activeSmoothTime);
 
-        // 3. LOAD CALCULATION
+        //Load Calculation
         float rawDelta = (currentRPM - previousRPM) / Time.deltaTime;
         float maxExpectedAcceleration = (maxRPM - idleRPM) / timeToReachMax;
         currentLoad = (maxExpectedAcceleration > 0) ? Mathf.Clamp01(rawDelta / maxExpectedAcceleration) : 0;
 
-        // 4. UPDATE FMOD PARAMETERS
+        //FMOD Params
         if (engineInstance.isValid())
         {
             engineInstance.setParameterByName(rpmParameterName, currentRPM);
