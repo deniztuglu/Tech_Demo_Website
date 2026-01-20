@@ -24,6 +24,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-6164459951983231234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CarrierEngine/Engine_Load
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Engine_Load
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 2824891465
+    data2: 3052737592
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-5310664994028422166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39,10 +63,10 @@ MonoBehaviour:
   Path: TechDemoFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639044444810862408
+  lastModified: 639044548484448876
   FileSizes:
   - Name: Desktop
-    Value: 2263168
+    Value: 2282592
   Exists: 1
 --- !u!114 &-4224458154910706221
 MonoBehaviour:
@@ -64,6 +88,30 @@ MonoBehaviour:
   ID:
     data1: 2824891465
     data2: 3052737592
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-4214357571297936579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CarrierEngine/Engine_RPM
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Engine_RPM
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 1570535393
+    data2: 3280985169
   Type: 0
   IsGlobal: 0
   Labels: []
@@ -194,14 +242,122 @@ MonoBehaviour:
   - {fileID: -2839931852473824358}
   - {fileID: -1493202225147486808}
   - {fileID: -804805363112081068}
+  - {fileID: 3850537917463768787}
+  - {fileID: 6493599267492999364}
   EditorParameters:
   - {fileID: -2863068690310984849}
   MasterBanks:
   - {fileID: -5310664994028422166}
   StringsBanks:
   - {fileID: 8478130545259368731}
-  cacheTime: 639044444810882816
+  cacheTime: 639044548484465536
   cacheVersion: 131634
+--- !u!114 &1765660610462195505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FighterEngine/Engine_RPM
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Engine_RPM
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 1570535393
+    data2: 3280985169
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &3850537917463768787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Fighter/FighterEngine
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Fighter/FighterEngine
+  Guid:
+    Data1: 2020904399
+    Data2: 1192914175
+    Data3: -184829303
+    Data4: 276012786
+  Banks:
+  - {fileID: -5310664994028422166}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 4088353021553532579}
+  - {fileID: 1765660610462195505}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4088353021553532579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FighterEngine/Engine_Load
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Engine_Load
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 2824891465
+    data2: 3052737592
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &6493599267492999364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Carrier/CarrierEngine
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Carrier/CarrierEngine
+  Guid:
+    Data1: 608800721
+    Data2: 1170017589
+    Data3: 1934314629
+    Data4: -1152364292
+  Banks:
+  - {fileID: -5310664994028422166}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6164459951983231234}
+  - {fileID: -4214357571297936579}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8478130545259368731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,8 +373,8 @@ MonoBehaviour:
   Path: TechDemoFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639044444810882816
+  lastModified: 639044548484465536
   FileSizes:
   - Name: Desktop
-    Value: 1024
+    Value: 1128
   Exists: 1

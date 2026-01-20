@@ -1917,19 +1917,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipController
   engineEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 608800721
+      Data2: 1170017589
+      Data3: 1934314629
+      Data4: -1152364292
+    Path: event:/Carrier/CarrierEngine
   rpmParameterName: Engine_RPM
   loadParameterName: Engine_Load
   idleRPM: 10
   maxRPM: 100
-  timeToReachMax: 2
+  timeToReachMax: 20
   timeToDropToIdle: 3.5
   shipModel: {fileID: 753659963}
-  maxTiltAngle: 8
+  maxTiltAngle: 4
   tiltSpeed: 4
   startingCameraDistance: 25
   showDebug: 1
@@ -5869,19 +5869,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipController
   engineEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 2020904399
+      Data2: 1192914175
+      Data3: -184829303
+      Data4: 276012786
+    Path: event:/Fighter/FighterEngine
   rpmParameterName: Engine_RPM
   loadParameterName: Engine_Load
   idleRPM: 10
   maxRPM: 100
-  timeToReachMax: 2
+  timeToReachMax: 10
   timeToDropToIdle: 3.5
   shipModel: {fileID: 1998710086}
-  maxTiltAngle: 8
+  maxTiltAngle: 6
   tiltSpeed: 4
   startingCameraDistance: 10
   showDebug: 1

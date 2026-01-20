@@ -4,6 +4,10 @@ using FMOD.Studio;
 
 public class SpaceshipController : MonoBehaviour
 {
+    [Header("Camera Settings")]
+    [Tooltip("How far the camera should be when we first switch to this ship.")]
+    public float startingCameraDistance = 10f;
+
     [Header("FMOD Settings")]
     public EventReference engineEvent; 
     
@@ -21,10 +25,6 @@ public class SpaceshipController : MonoBehaviour
     public float maxTiltAngle = 8f;  
     public float tiltSpeed = 4f;     
 
-    [Header("Camera Settings")]
-    [Tooltip("How far the camera should be when we first switch to this ship.")]
-    public float startingCameraDistance = 10f;
-
     [Header("Debug")]
     public bool showDebug = true;
 
@@ -37,14 +37,32 @@ public class SpaceshipController : MonoBehaviour
 
     void Awake()
     {
-        // Store initial rotation once at the very beginning
         if (shipModel != null) initialRotation = shipModel.localRotation;
     }
 
-    // CHANGED: Use OnEnable instead of Start so sound plays every time we select the ship
+    // 1. Called every time we switch TO this ship
     void OnEnable()
     {
-        currentRPM = idleRPM; // Reset RPM on start
+        StartEngine();
+    }
+
+    // 2. Called ONCE when the scene loads. 
+    // This catches the case where OnEnable ran too early for FMOD to be ready.
+    void Start()
+    {
+        if (!engineInstance.isValid())
+        {
+            StartEngine();
+        }
+    }
+
+    // Helper function to create the sound safely
+    private void StartEngine()
+    {
+        // If sound is already playing, don't start a second layer
+        if (engineInstance.isValid()) return;
+
+        currentRPM = idleRPM;
 
         if (!engineEvent.IsNull)
         {
@@ -52,20 +70,17 @@ public class SpaceshipController : MonoBehaviour
             engineInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
             engineInstance.start();
         }
-        else
-        {
-            Debug.LogWarning($"FMOD Engine Event not assigned on {gameObject.name}!");
-        }
     }
 
-    // CHANGED: Use OnDisable instead of OnDestroy so sound stops when we switch ships
+    // 3. Called every time we switch AWAY from this ship
     void OnDisable()
     {
         if (engineInstance.isValid())
         {
-            // STOP_MODE.IMMEDIATE prevents the sound from trailing off while the other ship starts
             engineInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             engineInstance.release();
+            // Clear the handle so we know it's gone
+            engineInstance.clearHandle(); 
         }
     }
 
