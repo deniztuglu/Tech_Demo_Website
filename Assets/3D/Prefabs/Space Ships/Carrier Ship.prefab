@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936382318631386766}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000066161103, y: 3.6592673e-16, z: 6.8752745e-17, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7}
+  m_LocalRotation: {x: 0.049280252, y: 0.9161871, z: -0.118973024, w: 0.37949723}
+  m_LocalPosition: {x: -4.705899, y: 1.7580764, z: 4.7058983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -110,24 +110,24 @@ MonoBehaviour:
       Radius: 4
       Height: -5
     SplineCurvature: 0.5
-  RecenteringTarget: 2
+  RecenteringTarget: 0
   HorizontalAxis:
-    Value: 0
-    Center: 0
+    Value: 135
+    Center: 135
     Range: {x: -180, y: 180}
     Wrap: 1
     Recentering:
-      Enabled: 0
+      Enabled: 1
       Wait: 1
       Time: 2
     Restrictions: 0
   VerticalAxis:
-    Value: 17.5
-    Center: 17.5
+    Value: 25
+    Center: 25
     Range: {x: -10, y: 45}
     Wrap: 0
     Recentering:
-      Enabled: 0
+      Enabled: 1
       Wait: 1
       Time: 2
     Restrictions: 0
@@ -752,7 +752,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u7206\u6483\u6A5F"
+  m_text: "\u7A7A\u6BCD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 59f1b934353e2db42946f83ca5f5064f, type: 2}
   m_sharedMaterial: {fileID: 8961783308564163974, guid: 59f1b934353e2db42946f83ca5f5064f, type: 2}

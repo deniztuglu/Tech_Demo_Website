@@ -275,7 +275,7 @@ Transform:
   m_GameObject: {fileID: 63040601}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000004393351, y: -0.000000004355675, z: -1.913601e-16, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2019,7 +2019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7881932871665803893, guid: ca82edc09d821964caa2b964d27915fd, type: 3}
       propertyPath: m_Name
-      value: Fighter Ship
+      value: Bomber Ship
       objectReference: {fileID: 0}
     - target: {fileID: 7881932871665803893, guid: ca82edc09d821964caa2b964d27915fd, type: 3}
       propertyPath: m_IsActive
@@ -2199,7 +2199,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1783966338665550411, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: m_Name
-      value: Bomber Ship
+      value: Fighter Ship
       objectReference: {fileID: 0}
     - target: {fileID: 1783966338665550411, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: m_IsActive
