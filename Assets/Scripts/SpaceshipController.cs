@@ -1,6 +1,6 @@
 using UnityEngine;
-using FMODUnity; 
-using FMOD.Studio; 
+using FMODUnity;
+using FMOD.Studio;
 
 public class SpaceshipController : MonoBehaviour
 {
@@ -9,21 +9,21 @@ public class SpaceshipController : MonoBehaviour
     public float startingCameraDistance = 10f;
 
     [Header("FMOD Settings")]
-    public EventReference engineEvent; 
-    
+    public EventReference engineEvent;
+
     [ParamRef] public string rpmParameterName = "Engine_RPM";
     [ParamRef] public string loadParameterName = "Engine_Load";
 
     [Header("Engine Physics")]
     [Range(0, 100)] public float idleRPM = 10f;
     [Range(0, 100)] public float maxRPM = 100f;
-    public float timeToReachMax = 2.0f; 
-    public float timeToDropToIdle = 3.5f; 
+    public float timeToReachMax = 2.0f;
+    public float timeToDropToIdle = 3.5f;
 
     [Header("Visual Polish (Tilt)")]
-    public Transform shipModel;      
-    public float maxTiltAngle = 8f;  
-    public float tiltSpeed = 4f;     
+    public Transform shipModel;
+    public float maxTiltAngle = 8f;
+    public float tiltSpeed = 4f;
 
     [Header("Debug")]
     public bool showDebug = true;
@@ -31,7 +31,7 @@ public class SpaceshipController : MonoBehaviour
     private EventInstance engineInstance;
     private float currentRPM;
     private float targetRPM;
-    private float rpmVelocity; 
+    private float rpmVelocity;
     private float currentLoad;
     private Quaternion initialRotation;
 
@@ -80,14 +80,14 @@ public class SpaceshipController : MonoBehaviour
             engineInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             engineInstance.release();
             // Clear the handle so we know it's gone
-            engineInstance.clearHandle(); 
+            engineInstance.clearHandle();
         }
     }
 
     void Update()
     {
         //Input
-        float throttleInput = Input.GetAxis("Vertical"); 
+        float throttleInput = Input.GetAxis("Vertical");
         targetRPM = Mathf.Lerp(idleRPM, maxRPM, Mathf.Clamp01(throttleInput));
 
         float activeSmoothTime = (targetRPM > currentRPM) ? timeToReachMax : timeToDropToIdle;
@@ -124,4 +124,9 @@ public class SpaceshipController : MonoBehaviour
         Debug.Log($"<color=#00FFCC><b>[FMOD RPM]:</b> {currentRPM:F2}</color> | " +
                   $"<color=#FFCC00><b>[FMOD Load]:</b> {currentLoad:P0}</color>");
     }
+
+    // Public getters for telemetry display
+    public float GetTargetRPM() => targetRPM;
+    public float GetCurrentRPM() => currentRPM;
+    public float GetCurrentLoad() => currentLoad;
 }
