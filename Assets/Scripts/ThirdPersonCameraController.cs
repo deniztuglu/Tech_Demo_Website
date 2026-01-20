@@ -1,9 +1,14 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
+    [Header("Cursor Settings")]
+    [SerializeField] private Texture2D draggableCursor;
+    [SerializeField] private Vector2 cursorHotspot = Vector2.zero;
+
     [Header("Zoom Settings")]
     [SerializeField] private float zoomSpeed = 2f;
     [SerializeField] private float zoomLerpSpeed = 10f;
@@ -11,21 +16,17 @@ public class ThirdPersonCameraController : MonoBehaviour
     [SerializeField] private float maxDistance = 15f;
 
     [Header("Orbit Settings")]
-    [SerializeField] private float lookSpeedX = 15f; // Adjusted for new logic
-    [SerializeField] private float lookSpeedY = 15f; // Adjusted for new logic
+    [SerializeField] private float lookSpeedX = 15f;
+    [SerializeField] private float lookSpeedY = 15f;
     [SerializeField] private bool invertY = false;
 
-    [Header("Orbit Limits (Clamping)")]
-    [Tooltip("Lowest angle (Ground). 0 is horizon, -90 is looking up.")]
-    [SerializeField] private float minVerticalAngle = 0f; 
-    [Tooltip("Highest angle. 90 is looking straight down.")]
+    [Header("Orbit Limits")]
+    [SerializeField] private float minVerticalAngle = 0f;
     [SerializeField] private float maxVerticalAngle = 85f;
 
-    [Header("Coasting / Physics")]
-    [Tooltip("How quickly the camera stops after releasing (Lower = longer drift)")]
-    [SerializeField] private float friction = 5f; 
-    [Tooltip("Smooths out mouse jitter. Helps momentum feel better.")]
-    [SerializeField] private float inputSmoothing = 15f; 
+    [Header("Physics")]
+    [SerializeField] private float friction = 5f;
+    [SerializeField] private float inputSmoothing = 15f;
 
     private PlayerControls controls;
     private CinemachineCamera cam;
@@ -35,16 +36,17 @@ public class ThirdPersonCameraController : MonoBehaviour
     private float targetZoom;
     private float currentZoom;
     private bool isDragging = false;
-
-    // Physics variables
-    private Vector2 currentVelocity; // The actual speed moving the camera
-    private Vector2 targetVelocity;  // The speed the mouse is trying to reach
+    private Vector2 currentVelocity;
+    private Vector2 targetVelocity;
+    
+    // We add this flag so the Manager can freeze input during a fade
+    public bool IsInputLocked { get; set; } = false;
 
     void Start()
     {
         controls = new PlayerControls();
         controls.Enable();
-        controls.CameraControls.MouseZoom.performed += HandleMouseScroll;
+        controls.CameraControls.MouseZoom.performed += ctx => scrollDelta = ctx.ReadValue<Vector2>();
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -55,15 +57,29 @@ public class ThirdPersonCameraController : MonoBehaviour
         targetZoom = currentZoom = orbital.Radius;
     }
 
-    private void HandleMouseScroll(InputAction.CallbackContext context)
-    {
-        scrollDelta = context.ReadValue<Vector2>();
-    }
-
     void Update()
     {
+        if (IsInputLocked) return; // Stop processing if locked by manager
+
         HandleZoom();
         HandleOrbit();
+        HandleCursorState();
+    }
+
+    // Helper to snap camera settings if we switch objects
+    public void ResetCameraState()
+    {
+        currentVelocity = Vector2.zero;
+        targetZoom = currentZoom = orbital.Radius;
+    }
+
+    private void HandleCursorState()
+    {
+        if (isDragging) return;
+
+        bool isOverUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+        if (isOverUI) Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        else Cursor.SetCursor(draggableCursor, cursorHotspot, CursorMode.Auto);
     }
 
     private void HandleZoom()
@@ -80,6 +96,12 @@ public class ThirdPersonCameraController : MonoBehaviour
     private void HandleOrbit()
     {
         bool rightMouseDown = Mouse.current.rightButton.isPressed;
+        
+        // Prevent click-through on UI
+        if (rightMouseDown && !isDragging)
+        {
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+        }
 
         if (rightMouseDown)
         {
@@ -88,21 +110,11 @@ public class ThirdPersonCameraController : MonoBehaviour
                 isDragging = true;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                
-                // Clear lingering momentum when we grab the camera again
-                currentVelocity = Vector2.zero; 
+                currentVelocity = Vector2.zero;
             }
 
             Vector2 mouseDelta = Mouse.current.delta.ReadValue();
-            
-            // Calculate target velocity based on input
-            float targetX = mouseDelta.x * lookSpeedX;
-            float targetY = mouseDelta.y * lookSpeedY * (invertY ? 1 : -1);
-
-            targetVelocity = new Vector2(targetX, targetY);
-            
-            // Smoothly interpolate current velocity towards the mouse movement (Input Smoothing)
-            // This prevents "0 velocity" frames from killing momentum instantly
+            targetVelocity = new Vector2(mouseDelta.x * lookSpeedX, mouseDelta.y * lookSpeedY * (invertY ? 1 : -1));
             currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, Time.deltaTime * inputSmoothing);
         }
         else
@@ -113,30 +125,18 @@ public class ThirdPersonCameraController : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
-
-            // Apply Friction: Decay velocity towards zero when not dragging
             currentVelocity = Vector2.Lerp(currentVelocity, Vector2.zero, Time.deltaTime * friction);
         }
 
-        // 1. Apply Horizontal Movement
-        if (Mathf.Abs(currentVelocity.x) > 0.01f)
-        {
-            orbital.HorizontalAxis.Value += currentVelocity.x * Time.deltaTime;
-        }
-
-        // 2. Apply Vertical Movement with CLAMPING
-        if (Mathf.Abs(currentVelocity.y) > 0.01f)
-        {
-            orbital.VerticalAxis.Value += currentVelocity.y * Time.deltaTime;
-        }
+        if (Mathf.Abs(currentVelocity.x) > 0.01f) orbital.HorizontalAxis.Value += currentVelocity.x * Time.deltaTime;
+        if (Mathf.Abs(currentVelocity.y) > 0.01f) orbital.VerticalAxis.Value += currentVelocity.y * Time.deltaTime;
         
-        // 3. Hard Clamp: Force the value to stay within bounds
-        // We do this last to ensure momentum doesn't push it past limits
         orbital.VerticalAxis.Value = Mathf.Clamp(orbital.VerticalAxis.Value, minVerticalAngle, maxVerticalAngle);
     }
 
     private void OnDisable()
     {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         if (controls != null) controls.Disable();
     }
 }
