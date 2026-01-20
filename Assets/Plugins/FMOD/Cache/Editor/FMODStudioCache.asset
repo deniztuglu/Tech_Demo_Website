@@ -63,7 +63,7 @@ MonoBehaviour:
   Path: TechDemoFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639044548484448876
+  lastModified: 639045317903681269
   FileSizes:
   - Name: Desktop
     Value: 2282592
@@ -250,7 +250,7 @@ MonoBehaviour:
   - {fileID: -5310664994028422166}
   StringsBanks:
   - {fileID: 8478130545259368731}
-  cacheTime: 639044548484465536
+  cacheTime: 639045317903681269
   cacheVersion: 131634
 --- !u!114 &1765660610462195505
 MonoBehaviour:
@@ -373,7 +373,7 @@ MonoBehaviour:
   Path: TechDemoFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639044548484465536
+  lastModified: 639045317903681269
   FileSizes:
   - Name: Desktop
     Value: 1128
