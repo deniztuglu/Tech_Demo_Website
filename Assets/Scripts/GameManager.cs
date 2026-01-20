@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Ships")]
     [SerializeField] private SpaceshipController[] _spaceships;
     private int _activeSpaceShipIndex = 0;
+
+    [Header("Playables")]
+    [SerializeField] private PlayableDirector _transitionPlayable;
 
     public static GameManager Instance;
     void Awake()
@@ -51,6 +55,7 @@ public class GameManager : MonoBehaviour
 
     void ActivateShip(int index)
     {
+        _transitionPlayable.Play();
         DisableAllShips();
         _spaceships[index].gameObject.SetActive(true);
     }
