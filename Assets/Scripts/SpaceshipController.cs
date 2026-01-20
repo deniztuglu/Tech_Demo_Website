@@ -21,6 +21,10 @@ public class SpaceshipController : MonoBehaviour
     public float maxTiltAngle = 8f;  
     public float tiltSpeed = 4f;     
 
+    [Header("Camera Settings")]
+    [Tooltip("How far the camera should be when we first switch to this ship.")]
+    public float startingCameraDistance = 10f;
+
     [Header("Debug")]
     public bool showDebug = true;
 

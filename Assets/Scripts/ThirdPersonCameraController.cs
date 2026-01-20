@@ -133,7 +133,16 @@ public class ThirdPersonCameraController : MonoBehaviour
         
         orbital.VerticalAxis.Value = Mathf.Clamp(orbital.VerticalAxis.Value, minVerticalAngle, maxVerticalAngle);
     }
-
+    public void ForceZoom(float distance)
+{
+    targetZoom = distance;
+    currentZoom = distance;
+    
+    if (orbital != null)
+    {
+        orbital.Radius = distance;
+    }
+}
     private void OnDisable()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
