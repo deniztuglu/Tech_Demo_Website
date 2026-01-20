@@ -721,8 +721,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100, y: -50}
-  m_SizeDelta: {x: 750, y: 250}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 1250, y: 250}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &9220166971236662449
 CanvasRenderer:
@@ -752,7 +752,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u7A7A\u6BCD"
+  m_text: CARRIER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 59f1b934353e2db42946f83ca5f5064f, type: 2}
   m_sharedMaterial: {fileID: 8961783308564163974, guid: 59f1b934353e2db42946f83ca5f5064f, type: 2}
@@ -761,8 +761,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282166258
-  m_fontColor: {r: 0.9490196, g: 0.6688732, b: 0.2372549, a: 1}
+    rgba: 4294901845
+  m_fontColor: {r: 0.33333302, g: 0, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
