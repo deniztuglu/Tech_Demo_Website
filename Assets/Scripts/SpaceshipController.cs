@@ -31,9 +31,16 @@ public class SpaceshipController : MonoBehaviour
     private float currentLoad;
     private Quaternion initialRotation;
 
-    void Start()
+    void Awake()
     {
-        currentRPM = idleRPM;
+        // Store initial rotation once at the very beginning
+        if (shipModel != null) initialRotation = shipModel.localRotation;
+    }
+
+    // CHANGED: Use OnEnable instead of Start so sound plays every time we select the ship
+    void OnEnable()
+    {
+        currentRPM = idleRPM; // Reset RPM on start
 
         if (!engineEvent.IsNull)
         {
@@ -43,10 +50,19 @@ public class SpaceshipController : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("FMOD Engine Event not assigned!");
+            Debug.LogWarning($"FMOD Engine Event not assigned on {gameObject.name}!");
         }
+    }
 
-        if (shipModel != null) initialRotation = shipModel.localRotation;
+    // CHANGED: Use OnDisable instead of OnDestroy so sound stops when we switch ships
+    void OnDisable()
+    {
+        if (engineInstance.isValid())
+        {
+            // STOP_MODE.IMMEDIATE prevents the sound from trailing off while the other ship starts
+            engineInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            engineInstance.release();
+        }
     }
 
     void Update()
@@ -84,21 +100,9 @@ public class SpaceshipController : MonoBehaviour
         shipModel.localRotation = Quaternion.Slerp(shipModel.localRotation, targetRotation, Time.deltaTime * tiltSpeed);
     }
 
-    void OnDestroy()
-    {
-        if (engineInstance.isValid())
-        {
-            engineInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            engineInstance.release();
-        }
-    }
-
     void LogEngineValues()
     {
         Debug.Log($"<color=#00FFCC><b>[FMOD RPM]:</b> {currentRPM:F2}</color> | " +
                   $"<color=#FFCC00><b>[FMOD Load]:</b> {currentLoad:P0}</color>");
     }
-
-    public float GetRPM() => currentRPM;
-    public float GetLoad() => currentLoad;
 }
