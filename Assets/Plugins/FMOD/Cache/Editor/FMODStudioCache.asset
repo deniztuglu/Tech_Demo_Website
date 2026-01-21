@@ -63,10 +63,10 @@ MonoBehaviour:
   Path: TechDemoFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639045317903681269
+  lastModified: 639045394278572253
   FileSizes:
   - Name: Desktop
-    Value: 2282592
+    Value: 2325536
   Exists: 1
 --- !u!114 &-4224458154910706221
 MonoBehaviour:
@@ -244,13 +244,14 @@ MonoBehaviour:
   - {fileID: -804805363112081068}
   - {fileID: 3850537917463768787}
   - {fileID: 6493599267492999364}
+  - {fileID: 7365143946728323634}
   EditorParameters:
   - {fileID: -2863068690310984849}
   MasterBanks:
   - {fileID: -5310664994028422166}
   StringsBanks:
   - {fileID: 8478130545259368731}
-  cacheTime: 639045317903681269
+  cacheTime: 639045394278588240
   cacheVersion: 131634
 --- !u!114 &1765660610462195505
 MonoBehaviour:
@@ -358,6 +359,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7365143946728323634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/ScreenChange
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/UI/ScreenChange
+  Guid:
+    Data1: -262406605
+    Data2: 1187611320
+    Data3: 1900194725
+    Data4: 1971893154
+  Banks:
+  - {fileID: -5310664994028422166}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 850
 --- !u!114 &8478130545259368731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,8 +401,8 @@ MonoBehaviour:
   Path: TechDemoFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639045317903681269
+  lastModified: 639045394278588240
   FileSizes:
   - Name: Desktop
-    Value: 1128
+    Value: 1174
   Exists: 1

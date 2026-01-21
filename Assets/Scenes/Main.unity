@@ -274,8 +274,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63040601}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000004393351, y: -0.000000004355675, z: -1.913601e-16, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalRotation: {x: 0.10319749, y: 0.8896529, z: -0.24914075, w: 0.36850634}
+  m_LocalPosition: {x: -2.045502, y: 1.7580764, z: 2.0455017}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -469,6 +469,13 @@ MonoBehaviour:
   - {fileID: 4354264784150281981}
   - {fileID: 4354264783734175154}
   _transitionPlayable: {fileID: 1674071982}
+  _transitionSound:
+    Guid:
+      Data1: -262406605
+      Data2: 1187611320
+      Data3: 1900194725
+      Data4: 1971893154
+    Path: event:/UI/ScreenChange
 --- !u!1 &237650058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,6 +2024,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -5.1213867e-16
       objectReference: {fileID: 0}
+    - target: {fileID: 7478000592525064620, guid: ca82edc09d821964caa2b964d27915fd, type: 3}
+      propertyPath: idleRPM
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7881932871665803893, guid: ca82edc09d821964caa2b964d27915fd, type: 3}
       propertyPath: m_Name
       value: Bomber Ship
@@ -2025,7 +2036,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2853206444627135616, guid: ca82edc09d821964caa2b964d27915fd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2162,7 +2174,12 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 6.8752745e-17
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8914833436161894956, guid: ee92f3b8935bfe34a9d16c9c0e3c2e07, type: 3}
+      propertyPath: idleRPM
+      value: 6.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5949773164380945603, guid: ee92f3b8935bfe34a9d16c9c0e3c2e07, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2249,25 +2266,29 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 63040603}
+    - target: {fileID: 4354264782973882700, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
+      propertyPath: idleRPM
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 4838066945432162555, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.7580764
       objectReference: {fileID: 0}
     - target: {fileID: 4838066945432162555, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.3685063
       objectReference: {fileID: 0}
     - target: {fileID: 4838066945432162555, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00000004393351
+      value: 0.103197485
       objectReference: {fileID: 0}
     - target: {fileID: 4838066945432162555, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000004355675
+      value: 0.8896529
       objectReference: {fileID: 0}
     - target: {fileID: 4838066945432162555, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -5.1213867e-16
+      value: -0.24914075
       objectReference: {fileID: 0}
     - target: {fileID: 5307644485689067407, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: Orbits.Center.Height

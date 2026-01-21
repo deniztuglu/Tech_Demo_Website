@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{e8c16a54-8254-4aed-ba9a-2adefe4fd16c}">
+		<property name="assetPath">
+			<value>User Interface, Glitch, Medium, Video Transition, Motion 04 SND51254 2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.64852083333333332</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1a0b08f3-2c55-4644-b97f-448a2240d2b0}</destination>
+		</relationship>
+	</object>
+</objects>
