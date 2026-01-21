@@ -46,9 +46,9 @@ public class GameManager : MonoBehaviour
         if (_spaceships.Length < 1) return;
 
         DisableAllShips();
-        
+
         // Pass 'false' here so the sound doesn't play on start
-        ActivateShip(0, false); 
+        ActivateShip(0, false);
     }
 
     void DisableAllShips()
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Default is true, so normal gameplay calls will play sound
-    void ActivateShip(int index, bool playSound = true) 
+    void ActivateShip(int index, bool playSound = true)
     {
         if (playSound && !_transitionSound.IsNull)
         {
@@ -74,12 +74,12 @@ public class GameManager : MonoBehaviour
 
     void HandleSelectShip()
     {
-        if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
+        if (Keyboard.current.leftArrowKey.wasPressedThisFrame || Keyboard.current.aKey.wasPressedThisFrame)
         {
             _activeSpaceShipIndex = (_activeSpaceShipIndex - 1 + _spaceships.Length) % _spaceships.Length;
             ActivateShip(_activeSpaceShipIndex); // Defaults to true
         }
-        else if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
+        else if (Keyboard.current.rightArrowKey.wasPressedThisFrame || Keyboard.current.dKey.wasPressedThisFrame)
         {
             _activeSpaceShipIndex = (_activeSpaceShipIndex + 1) % _spaceships.Length;
             ActivateShip(_activeSpaceShipIndex); // Defaults to true
