@@ -274,8 +274,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63040601}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10319749, y: 0.8896529, z: -0.24914075, w: 0.36850634}
-  m_LocalPosition: {x: -2.045502, y: 1.7580764, z: 2.0455017}
+  m_LocalRotation: {x: 0.08282785, y: 0.9019799, z: -0.1999641, w: 0.3736123}
+  m_LocalPosition: {x: -3.2042818, y: 2.1130912, z: 3.2042816}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -468,6 +468,9 @@ MonoBehaviour:
   - {fileID: 667901727}
   - {fileID: 4354264784150281981}
   - {fileID: 4354264783734175154}
+  _skyboxes:
+  - {fileID: 2100000, guid: d7ee8aedd5a9c4b9cb1def2dadf0ff5c, type: 2}
+  - {fileID: 2100000, guid: 4881097ec1471a145b955a9d5f4f3e27, type: 2}
   _transitionPlayable: {fileID: 1674071982}
   _transitionSound:
     Guid:
@@ -2272,23 +2275,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4838066945432162555, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7580764
+      value: 2.1130912
       objectReference: {fileID: 0}
     - target: {fileID: 4838066945432162555, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.3685063
+      value: 0.37361234
       objectReference: {fileID: 0}
     - target: {fileID: 4838066945432162555, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.103197485
+      value: 0.08282786
       objectReference: {fileID: 0}
     - target: {fileID: 4838066945432162555, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8896529
+      value: 0.9019799
       objectReference: {fileID: 0}
     - target: {fileID: 4838066945432162555, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.24914075
+      value: -0.19996412
       objectReference: {fileID: 0}
     - target: {fileID: 5307644485689067407, guid: 8271a93dff3cbaf4e819ecd6eedfba54, type: 3}
       propertyPath: Orbits.Center.Height

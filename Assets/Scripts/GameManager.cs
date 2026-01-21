@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SpaceshipController[] _spaceships;
     private int _activeSpaceShipIndex = 0;
 
+    [Header("Skybox")]
+    [SerializeField] private Material[] _skyboxes;
+    private int _activeSkyboxIndex = 0;
+
     [Header("Playables")]
     [SerializeField] private PlayableDirector _transitionPlayable;
 
@@ -39,6 +43,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         HandleSelectShip();
+        HandleChangeSkybox();
     }
 
     void Initialize()
@@ -46,9 +51,7 @@ public class GameManager : MonoBehaviour
         if (_spaceships.Length < 1) return;
 
         DisableAllShips();
-
-        // Pass 'false' here so the sound doesn't play on start
-        ActivateShip(0, false);
+        ActivateShip(0);
     }
 
     void DisableAllShips()
@@ -59,15 +62,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Default is true, so normal gameplay calls will play sound
-    void ActivateShip(int index, bool playSound = true)
+    void ActivateShip(int index)
     {
-        if (playSound && !_transitionSound.IsNull)
-        {
-            RuntimeManager.PlayOneShot(_transitionSound, transform.position);
-        }
-
-        _transitionPlayable.Play();
+        PlayTransitionPlayable();
         DisableAllShips();
         _spaceships[index].gameObject.SetActive(true);
     }
@@ -77,12 +74,35 @@ public class GameManager : MonoBehaviour
         if (Keyboard.current.leftArrowKey.wasPressedThisFrame || Keyboard.current.aKey.wasPressedThisFrame)
         {
             _activeSpaceShipIndex = (_activeSpaceShipIndex - 1 + _spaceships.Length) % _spaceships.Length;
-            ActivateShip(_activeSpaceShipIndex); // Defaults to true
+            ActivateShip(_activeSpaceShipIndex);
+
         }
         else if (Keyboard.current.rightArrowKey.wasPressedThisFrame || Keyboard.current.dKey.wasPressedThisFrame)
         {
             _activeSpaceShipIndex = (_activeSpaceShipIndex + 1) % _spaceships.Length;
-            ActivateShip(_activeSpaceShipIndex); // Defaults to true
+            ActivateShip(_activeSpaceShipIndex);
         }
+    }
+
+    void HandleChangeSkybox()
+    {
+        if (Keyboard.current.tabKey.wasPressedThisFrame)
+        {
+            _activeSkyboxIndex = (_activeSkyboxIndex + 1) % _skyboxes.Length;
+            RenderSettings.skybox = _skyboxes[_activeSkyboxIndex];
+            PlayTransitionPlayable();
+        }
+    }
+
+    void PlayTransitionPlayable()
+    {
+        PlayTransitionSound();
+        _transitionPlayable.Play();
+    }
+
+    void PlayTransitionSound()
+    {
+        if (_transitionSound.IsNull) return;
+        RuntimeManager.PlayOneShot(_transitionSound, transform.position);
     }
 }
