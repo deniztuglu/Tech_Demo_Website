@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using FMODUnity;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Playables")]
     [SerializeField] private PlayableDirector _transitionPlayable;
+
+    [Header("Audio")]
+    [SerializeField] private EventReference _transitionSound;
 
     public static GameManager Instance;
     void Awake()
@@ -42,7 +46,9 @@ public class GameManager : MonoBehaviour
         if (_spaceships.Length < 1) return;
 
         DisableAllShips();
-        ActivateShip(0);
+        
+        // Pass 'false' here so the sound doesn't play on start
+        ActivateShip(0, false); 
     }
 
     void DisableAllShips()
@@ -53,8 +59,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void ActivateShip(int index)
+    // Default is true, so normal gameplay calls will play sound
+    void ActivateShip(int index, bool playSound = true) 
     {
+        if (playSound && !_transitionSound.IsNull)
+        {
+            RuntimeManager.PlayOneShot(_transitionSound, transform.position);
+        }
+
         _transitionPlayable.Play();
         DisableAllShips();
         _spaceships[index].gameObject.SetActive(true);
@@ -65,12 +77,12 @@ public class GameManager : MonoBehaviour
         if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
         {
             _activeSpaceShipIndex = (_activeSpaceShipIndex - 1 + _spaceships.Length) % _spaceships.Length;
-            ActivateShip(_activeSpaceShipIndex);
+            ActivateShip(_activeSpaceShipIndex); // Defaults to true
         }
         else if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
         {
             _activeSpaceShipIndex = (_activeSpaceShipIndex + 1) % _spaceships.Length;
-            ActivateShip(_activeSpaceShipIndex);
+            ActivateShip(_activeSpaceShipIndex); // Defaults to true
         }
     }
 }
