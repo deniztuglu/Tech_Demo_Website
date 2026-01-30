@@ -40,14 +40,13 @@ public class SpaceshipController : MonoBehaviour
         if (shipModel != null) initialRotation = shipModel.localRotation;
     }
 
-    // 1. Called every time we switch TO this ship
+    // Called every time we switch TO this ship
     void OnEnable()
     {
         StartEngine();
     }
 
-    // 2. Called ONCE when the scene loads. 
-    // This catches the case where OnEnable ran too early for FMOD to be ready.
+    // Called ONCE when the scene loads. 
     void Start()
     {
         if (!engineInstance.isValid())
@@ -56,10 +55,9 @@ public class SpaceshipController : MonoBehaviour
         }
     }
 
-    // Helper function to create the sound safely
+
     private void StartEngine()
     {
-        // If sound is already playing, don't start a second layer
         if (engineInstance.isValid()) return;
 
         currentRPM = idleRPM;
@@ -72,14 +70,13 @@ public class SpaceshipController : MonoBehaviour
         }
     }
 
-    // 3. Called every time we switch AWAY from this ship
     void OnDisable()
     {
         if (engineInstance.isValid())
         {
             engineInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             engineInstance.release();
-            // Clear the handle so we know it's gone
+            //Clear the handle so we know it's gone
             engineInstance.clearHandle();
         }
     }
@@ -125,7 +122,7 @@ public class SpaceshipController : MonoBehaviour
                   $"<color=#FFCC00><b>[FMOD Load]:</b> {currentLoad:P0}</color>");
     }
 
-    // Public getters for telemetry display
+    //Public getters for telemetry display
     public float GetTargetRPM() => targetRPM;
     public float GetCurrentRPM() => currentRPM;
     public float GetCurrentLoad() => currentLoad;

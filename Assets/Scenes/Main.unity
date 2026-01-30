@@ -470,7 +470,7 @@ MonoBehaviour:
   - {fileID: 4354264783734175154}
   _skyboxes:
   - {fileID: 2100000, guid: d7ee8aedd5a9c4b9cb1def2dadf0ff5c, type: 2}
-  - {fileID: 2100000, guid: 4881097ec1471a145b955a9d5f4f3e27, type: 2}
+  - {fileID: 2100000, guid: 9ffc0108eaa654e51a30ea6321b232e5, type: 2}
   _transitionPlayable: {fileID: 1674071982}
   _transitionSound:
     Guid:
